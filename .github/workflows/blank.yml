@@ -1,0 +1,18 @@
+import tensorflow as tf
+
+# Define the neural network architecture
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(64, activation='relu', input_shape=(10,)),
+    tf.keras.layers.Dense(64, activation='relu'),
+    tf.keras.layers.Dense(1)
+])
+
+# Compile the model with the appropriate loss and optimizer functions
+model.compile(optimizer=tf.keras.optimizers.Adam(0.01),
+              loss='binary_crossentropy',
+              metrics=['accuracy'])
+
+# Train the model using some sample data
+x_train = tf.random.normal([1000, 10])
+y_train = tf.random.normal([1000, 1])
+model.fit(x_train, y_train, epochs=10, batch_size=32)
